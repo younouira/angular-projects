@@ -1,1 +1,27 @@
-<p>product-list works!</p>
+<section class="mt-4">
+	<h2 class="mb-4">Nos PCs en stock</h2>
+
+	<div *ngIf="isLoading" class="d-flex justify-content-center my-5">
+		<div class="spinner-border text-primary" role="status">
+			<span class="visually-hidden">Chargement...</span>
+		</div>
+	</div>
+
+	<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+		{{ errorMessage }}
+	</div>
+
+	<div class="row" *ngIf="!isLoading && !errorMessage">
+		<div class="col-md-4 mb-4" *ngFor="let product of products; trackBy: trackById">
+			<div class="card h-100 shadow-sm">
+				<img [src]="product.imageUrl" class="card-img-top product-image" [alt]="product.name" />
+				<div class="card-body d-flex flex-column">
+					<h5 class="card-title">{{ product.name }}</h5>
+					<p class="card-text flex-grow-1">{{ product.description }}</p>
+					<p class="text-primary fw-bold fs-5">{{ product.price | currency:'EUR' }}</p>
+					<a [routerLink]="['/product', product.id]" class="btn btn-primary">Voir détail</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
