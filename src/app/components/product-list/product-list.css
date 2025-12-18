@@ -1,0 +1,8 @@
+section h2 {
+	color: #2d3748;
+}
+
+.product-image {
+	height: 200px;
+	object-fit: cover;
+}

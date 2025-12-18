@@ -1,0 +1,102 @@
+/* Styles globaux */
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f9fafb;
+    color: #333;
+}
+
+/* Navbar personnalisée */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+/* Cards produits */
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 180px;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.card-title {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #2d3748;
+    font-size: 1.1rem;
+}
+
+.card-text {
+    color: #718096;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Boutons */
+.btn-primary {
+    background-color: #4f46e5;
+    border-color: #4f46e5;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #4338ca;
+    border-color: #4338ca;
+}
+
+.btn-success {
+    background-color: #10b981;
+    border-color: #10b981;
+}
+
+.btn-success:hover {
+    background-color: #059669;
+    border-color: #059669;
+}
+
+.btn-outline-secondary {
+    color: #4a5568;
+    border-color: #e2e8f0;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f1f5f9;
+}
+
+/* Page détail produit */
+.text-primary {
+    color: #4f46e5 !important;
+}
+
+.lead {
+    font-size: 1.1rem;
+    color: #4a5568;
+}
+
+/* Footer léger (optionnel) */
+footer {
+    margin-top: 4rem;
+    padding: 1.5rem 0;
+    text-align: center;
+    color: #a0aec0;
+    font-size: 0.9rem;
+    border-top: 1px solid #edf2f7;
+}
