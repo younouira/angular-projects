@@ -151,6 +151,6 @@ pandoc SMART_PARKING_PROTOTYPE.md -o Smart_Parking.docx
 
 ---
 
-**Document créé le** : Décembre 2025  
+**Document créé le** : 21 décembre 2025  
 **Basé sur** : Mémoire de Master – État de l'art "Smart Parking"  
 **Version** : Améliorée et condensée

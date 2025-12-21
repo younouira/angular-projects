@@ -294,6 +294,5 @@ Les deux versions sont **complémentaires** et répondent à des besoins différ
 
 ---
 
-**Auteur de l'analyse** : Assistant IA  
-**Date** : Décembre 2025  
+**Date** : 21 décembre 2025  
 **Basé sur** : Mémoire de Master Smart Parking, Université Badji Mokhtar – Annaba

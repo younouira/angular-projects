@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Smart Parking Document Converter
 # This script helps convert the Markdown documentation to various formats
@@ -20,6 +21,12 @@ if command -v pandoc &> /dev/null; then
     echo ""
     
     read -p "Choose an option (1-4): " option
+    
+    # Validate input
+    if [[ ! "$option" =~ ^[1-4]$ ]]; then
+        echo "✗ Invalid option. Please choose 1, 2, 3, or 4."
+        exit 1
+    fi
     
     case $option in
         1)

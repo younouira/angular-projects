@@ -207,5 +207,5 @@ Référez-vous à la documentation Markdown : https://www.markdownguide.org/
 **Note** : Ce document est optimisé pour une lecture et conversion rapide. Pour une thèse complète ou un mémoire académique officiel, une version plus détaillée avec références bibliographiques et annexes est recommandée.
 
 **Version** : 1.0  
-**Date** : Décembre 2025  
-**Maintenu par** : Youssef NOUIRA
+**Date** : 21 décembre 2025  
+**Projet** : Smart Parking - Université Badji Mokhtar – Annaba

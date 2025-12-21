@@ -337,8 +337,8 @@ Cette documentation offre une **version optimisée, moderne et professionnelle**
 
 ---
 
-**Créé le** : Décembre 2025  
+**Créé le** : 21 décembre 2025  
 **Version** : 1.0  
 **Auteur des améliorations** : Assistant IA  
 **Projet original** : Université Badji Mokhtar – Annaba  
-**Maintenance** : Youssef NOUIRA
+**Maintenance** : Documentation auto-générée
