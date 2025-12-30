@@ -1,0 +1,136 @@
+<div class="editor-container">
+    <div class="editor-header">
+        <h1>Menu Editor</h1>
+        <div class="header-actions">
+            <button class="btn btn-secondary" (click)="goToPreview()">
+                <span class="icon">👁️</span> Preview
+            </button>
+            <button class="btn btn-primary" (click)="goToQRCode()">
+                <span class="icon">🔳</span> Generate QR
+            </button>
+        </div>
+    </div>
+
+    <div class="editor-content">
+        <!-- Categories Sidebar -->
+        <div class="categories-sidebar">
+            <div class="sidebar-header">
+                <h2>Categories</h2>
+                <button class="btn btn-small btn-primary" (click)="showCategoryForm.set(true)">
+                    + Add Category
+                </button>
+            </div>
+
+            @if (showCategoryForm()) {
+            <div class="category-form">
+                <input type="text" [(ngModel)]="categoryForm.name" placeholder="Category Name" class="form-input" />
+                <input type="text" [(ngModel)]="categoryForm.description" placeholder="Description (optional)"
+                    class="form-input" />
+                <div class="form-actions">
+                    <button class="btn btn-small btn-primary" (click)="addCategory()">Add</button>
+                    <button class="btn btn-small btn-secondary" (click)="showCategoryForm.set(false)">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            }
+
+            <div class="categories-list">
+                @for (category of menu()?.categories; track category.id) {
+                <div class="category-item" [class.active]="selectedCategory()?.id === category.id"
+                    (click)="selectCategory(category)">
+                    <div class="category-info">
+                        <h3>{{ category.name }}</h3>
+                        <span class="item-count">{{ category.items.length }} items</span>
+                    </div>
+                    <button class="btn-icon btn-danger" (click)="deleteCategory(category.id); $event.stopPropagation()"
+                        title="Delete category">
+                        🗑️
+                    </button>
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Items Panel -->
+        <div class="items-panel">
+            @if (selectedCategory()) {
+            <div class="panel-header">
+                <div>
+                    <h2>{{ selectedCategory()!.name }}</h2>
+                    @if (selectedCategory()!.description) {
+                    <p class="category-description">{{ selectedCategory()!.description }}</p>
+                    }
+                </div>
+                <button class="btn btn-primary" (click)="showItemForm.set(true); resetItemForm()">
+                    + Add Item
+                </button>
+            </div>
+
+            @if (showItemForm()) {
+            <div class="item-form">
+                <h3>{{ editingItem() ? 'Edit Item' : 'Add New Item' }}</h3>
+                <input type="text" [(ngModel)]="itemForm.name" placeholder="Item Name" class="form-input" />
+                <textarea [(ngModel)]="itemForm.description" placeholder="Description" class="form-input"
+                    rows="3"></textarea>
+                <input type="number" [(ngModel)]="itemForm.price" placeholder="Price" class="form-input" step="0.01" />
+                <input type="text" [(ngModel)]="itemForm.allergens" placeholder="Allergens (comma-separated)"
+                    class="form-input" />
+                <label class="checkbox-label">
+                    <input type="checkbox" [(ngModel)]="itemForm.available" />
+                    Available
+                </label>
+                <div class="form-actions">
+                    <button class="btn btn-primary" (click)="addItem()">
+                        {{ editingItem() ? 'Update' : 'Add' }}
+                    </button>
+                    <button class="btn btn-secondary" (click)="cancelItemEdit()">Cancel</button>
+                </div>
+            </div>
+            }
+
+            <div class="items-list">
+                @for (item of selectedCategory()!.items; track item.id) {
+                <div class="item-card" [class.unavailable]="!item.available">
+                    <div class="item-header">
+                        <h3>{{ item.name }}</h3>
+                        <span class="item-price">${{ item.price.toFixed(2) }}</span>
+                    </div>
+                    <p class="item-description">{{ item.description }}</p>
+                    @if (item.allergens && item.allergens.length > 0) {
+                    <div class="item-allergens">
+                        <span class="allergen-label">Allergens:</span>
+                        @for (allergen of item.allergens; track allergen) {
+                        <span class="allergen-tag">{{ allergen }}</span>
+                        }
+                    </div>
+                    }
+                    <div class="item-actions">
+                        <button class="btn-toggle" [class.active]="item.available"
+                            (click)="toggleItemAvailability(item)">
+                            {{ item.available ? 'Available' : 'Unavailable' }}
+                        </button>
+                        <button class="btn-icon" (click)="editItem(item)" title="Edit">✏️</button>
+                        <button class="btn-icon btn-danger" (click)="deleteItem(item.id)" title="Delete">
+                            🗑️
+                        </button>
+                    </div>
+                </div>
+                } @empty {
+                <div class="empty-state">
+                    <p>No items in this category yet.</p>
+                    <button class="btn btn-primary" (click)="showItemForm.set(true)">
+                        Add Your First Item
+                    </button>
+                </div>
+                }
+            </div>
+            } @else {
+            <div class="empty-state">
+                <h2>Select a category to start editing</h2>
+                <p>Choose a category from the sidebar or create a new one</p>
+            </div>
+            }
+        </div>
+    </div>
+</div>

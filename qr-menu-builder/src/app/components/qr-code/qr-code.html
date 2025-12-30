@@ -1,0 +1,60 @@
+<div class="qr-container">
+    <div class="qr-header">
+        <h1>Generate QR Code</h1>
+        <p>Create a QR code for your digital menu</p>
+    </div>
+
+    <div class="qr-content">
+        <div class="qr-settings">
+            <h2>Settings</h2>
+
+            <div class="form-group">
+                <label for="menuUrl">Menu URL</label>
+                <input id="menuUrl" type="text" [ngModel]="menuUrl()" (ngModelChange)="menuUrl.set($event)"
+                    placeholder="https://yourmenu.example.com" class="form-input" />
+                <small>Enter the URL where your menu will be hosted</small>
+            </div>
+
+            <div class="form-group">
+                <label for="qrSize">QR Code Size</label>
+                <input id="qrSize" type="range" min="128" max="512" step="64" [ngModel]="qrSize()"
+                    (ngModelChange)="qrSize.set($event); updateSize()" class="slider" />
+                <span class="size-display">{{ qrSize() }}px</span>
+            </div>
+
+            <button class="btn btn-primary" (click)="generateQRCode()">
+                {{ qrGenerated() ? 'Regenerate' : 'Generate' }} QR Code
+            </button>
+        </div>
+
+        <div class="qr-preview">
+            <h2>Preview</h2>
+            <div class="qr-display">
+                <canvas #canvas></canvas>
+                @if (!qrGenerated()) {
+                <div class="qr-placeholder">
+                    <span class="icon">🔳</span>
+                    <p>Generate a QR code to see preview</p>
+                </div>
+                }
+            </div>
+
+            @if (qrGenerated()) {
+            <button class="btn btn-success" (click)="downloadQRCode()">
+                📥 Download QR Code
+            </button>
+            }
+
+            <div class="qr-instructions">
+                <h3>How to use:</h3>
+                <ol>
+                    <li>Enter your menu URL</li>
+                    <li>Adjust the QR code size</li>
+                    <li>Click "Generate QR Code"</li>
+                    <li>Download and print the QR code</li>
+                    <li>Place it on your tables or at the entrance</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
