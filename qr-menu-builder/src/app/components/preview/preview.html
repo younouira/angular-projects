@@ -1,0 +1,72 @@
+<div class="preview-container">
+    @if (menu()) {
+    <div class="menu-header">
+        @if (menu()!.logo) {
+        <img [src]="menu()!.logo" alt="Restaurant Logo" class="restaurant-logo" />
+        }
+        <h1 class="restaurant-name">{{ menu()!.restaurantName }}</h1>
+        <p class="restaurant-description">{{ menu()!.description }}</p>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)"
+            placeholder="Search menu items..." class="search-input" />
+        @if (searchQuery()) {
+        <button class="clear-btn" (click)="clearSearch()">✕</button>
+        }
+    </div>
+
+    <div class="category-filter">
+        <button class="filter-chip" [class.active]="!selectedCategoryId()" (click)="selectCategory(null)">
+            All
+        </button>
+        @for (category of menu()!.categories; track category.id) {
+        <button class="filter-chip" [class.active]="selectedCategoryId() === category.id"
+            (click)="selectCategory(category.id)">
+            {{ category.name }}
+        </button>
+        }
+    </div>
+
+    <div class="menu-content">
+        @for (category of filteredCategories(); track category.id) {
+        <div class="category-section">
+            <h2 class="category-name">{{ category.name }}</h2>
+            @if (category.description) {
+            <p class="category-description">{{ category.description }}</p>
+            }
+
+            <div class="items-grid">
+                @for (item of category.items; track item.id) {
+                <div class="menu-item" [class.unavailable]="!item.available">
+                    <div class="item-info">
+                        <div class="item-header">
+                            <h3 class="item-name">{{ item.name }}</h3>
+                            <span class="item-price">${{ item.price.toFixed(2) }}</span>
+                        </div>
+                        <p class="item-description">{{ item.description }}</p>
+                        @if (item.allergens && item.allergens.length > 0) {
+                        <div class="allergens">
+                            @for (allergen of item.allergens; track allergen) {
+                            <span class="allergen-badge">{{ allergen }}</span>
+                            }
+                        </div>
+                        }
+                        @if (!item.available) {
+                        <span class="unavailable-badge">Currently Unavailable</span>
+                        }
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        } @empty {
+        <div class="empty-results">
+            <p>No items found matching your search.</p>
+        </div>
+        }
+    </div>
+    } @else {
+    <div class="loading">Loading menu...</div>
+    }
+</div>
