@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <title>PC Store</title>
   <script>
-    // Redirect to the base URL, preserving the path
-    const path = window.location.pathname.replace(/^\/pc-store/, '');
-    const redirect = '/pc-store/' + (path ? '?redirect=' + encodeURIComponent(path) : '');
-    window.location.href = redirect;
+    // GitHub Pages SPA redirect handler
+    // Store the path in sessionStorage and redirect to index
+    sessionStorage.setItem('redirect', window.location.pathname + window.location.search + window.location.hash);
+    window.location.href = '/pc-store/';
   </script>
 </head>
 <body>

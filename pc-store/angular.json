@@ -23,11 +23,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "CNAME",
-                "input": "../",
-                "output": "/"
               }
             ],
             "styles": [
