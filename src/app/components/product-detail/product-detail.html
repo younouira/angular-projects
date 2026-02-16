@@ -1,25 +1,30 @@
 <section class="mt-4">
-	<div *ngIf="isLoading" class="d-flex justify-content-center my-5">
-		<div class="spinner-border text-primary" role="status">
-			<span class="visually-hidden">Chargement...</span>
+	<div class="container">
+		<div *ngIf="isLoading" class="d-flex justify-content-center my-5">
+			<div class="spinner-border text-primary" role="status">
+				<span class="visually-hidden">Chargement...</span>
+			</div>
 		</div>
-	</div>
 
-	<div *ngIf="!isLoading && product" class="row">
-		<div class="col-md-6 mb-3 mb-md-0">
-			<img [src]="product.imageUrl" class="img-fluid rounded" [alt]="product.name" />
+		<div *ngIf="!isLoading && product" class="detail-grid">
+			<div class="product-image-container">
+				<img [src]="product.imageUrl" class="img-fluid" [alt]="product.name" />
+			</div>
+			<div class="product-info">
+				<h2>{{ product.name }}</h2>
+				<p class="product-description">{{ product.description }}</p>
+				<div class="product-price">{{ product.price | currency:'EUR' }}</div>
+				<div class="action-buttons">
+					<button (click)="addToCart(product)" class="btn btn-success btn-lg">Ajouter au panier</button>
+					<a routerLink="/" class="btn btn-outline-secondary">Retour</a>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-6 d-flex flex-column">
-			<h2>{{ product.name }}</h2>
-			<p class="lead">{{ product.description }}</p>
-			<h3 class="text-primary mt-3">{{ product.price | currency:'EUR' }}</h3>
-			<button (click)="addToCart(product)" class="btn btn-success btn-lg mt-3">Ajouter au panier</button>
-			<a routerLink="/" class="btn btn-outline-secondary mt-3">← Retour à la boutique</a>
-		</div>
-	</div>
 
-	<div *ngIf="!isLoading && !product" class="alert alert-warning">
-		<h4>Produit non trouvé</h4>
-		<a routerLink="/" class="btn btn-primary">Retourner à l'accueil</a>
+		<div *ngIf="!isLoading && !product" class="alert alert-warning not-found">
+			<h4>Produit non trouvé</h4>
+			<p>Le produit que vous cherchez n'existe pas ou a été supprimé.</p>
+			<a routerLink="/" class="btn btn-primary">Retourner à l'accueil</a>
+		</div>
 	</div>
 </section>

@@ -1,4 +1,8 @@
-.navbar-brand img {
-	width: 32px;
-	height: 32px;
+/* Navbar-specific styles are now in global styles.css */
+
+.navbar-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
 }

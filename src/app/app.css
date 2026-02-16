@@ -1,0 +1,61 @@
+/* App Component Styles */
+
+main {
+    min-height: calc(100vh - 200px);
+    padding: 2rem 0;
+    background-color: #f3f4f6;
+}
+
+app-navbar {
+    display: block;
+}
+
+footer {
+    margin-top: auto;
+    padding: 2rem 0;
+    background-color: #1f2937;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    border-top: 1px solid #374151;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.badge-creator {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    animation: slideInUp 0.5s ease;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp .badge-creator:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Loading Spinner */
+.spinner-border {
+    color: #2563eb;
+}
+
+/* Responsive Container */
+.container {
+    max-width: 1200px;
+}
