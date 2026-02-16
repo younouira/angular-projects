@@ -1,0 +1,48 @@
+<section class="articles-section">
+    <div class="container">
+        <div class="articles-header">
+            <h1>📰 Blog & Guides Techniques</h1>
+            <p class="subtitle">Actualités, guides et conseils pour bien choisir votre PC</p>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button *ngFor="let cat of categories" (click)="filterByCategory(cat)"
+                [class.active]="selectedCategory === cat" class="filter-btn">
+                {{ cat }}
+            </button>
+        </div>
+
+        <div *ngIf="isLoading" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+            </div>
+        </div>
+
+        <!-- Articles Grid -->
+        <div *ngIf="!isLoading && filteredArticles.length > 0" class="articles-grid">
+            <article *ngFor="let article of filteredArticles" class="article-card">
+                <div class="article-image">
+                    <img [src]="article.imageUrl" [alt]="article.title" />
+                    <span class="article-category">{{ article.category }}</span>
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-date">📅 {{ formatDate(article.date) }}</span>
+                        <span class="article-time">⏱️ {{ article.readTime }} min de lecture</span>
+                    </div>
+                    <h2 class="article-title">{{ article.title }}</h2>
+                    <p class="article-excerpt">{{ article.excerpt }}</p>
+                    <div class="article-footer">
+                        <span class="article-author">Par {{ article.author }}</span>
+                        <button class="read-more-btn">Lire plus →</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div *ngIf="!isLoading && filteredArticles.length === 0" class="empty-state">
+            <p>Aucun article trouvé pour cette catégorie.</p>
+        </div>
+    </div>
+</section>

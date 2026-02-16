@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { NgIf, CurrencyPipe } from '@angular/common';
+import { NgIf, CurrencyPipe, CommonModule, NgFor } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [NgIf, RouterLink, CurrencyPipe],
+  imports: [NgIf, NgFor, RouterLink, CurrencyPipe, CommonModule],
   templateUrl: './product-detail.html',
   styleUrls: ['./product-detail.css']
 })

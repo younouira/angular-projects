@@ -1,4 +1,4 @@
-<section class="mt-4">
+<section class="product-detail-section">
 	<div class="container">
 		<div *ngIf="isLoading" class="d-flex justify-content-center my-5">
 			<div class="spinner-border text-primary" role="status">
@@ -6,18 +6,61 @@
 			</div>
 		</div>
 
-		<div *ngIf="!isLoading && product" class="detail-grid">
-			<div class="product-image-container">
-				<img [src]="product.imageUrl" class="img-fluid" [alt]="product.name" />
-			</div>
-			<div class="product-info">
-				<h2>{{ product.name }}</h2>
-				<p class="product-description">{{ product.description }}</p>
-				<div class="product-price">{{ product.price | currency:'EUR' }}</div>
-				<div class="action-buttons">
-					<button (click)="addToCart(product)" class="btn btn-success btn-lg">Ajouter au panier</button>
-					<a routerLink="/" class="btn btn-outline-secondary">Retour</a>
+		<div *ngIf="!isLoading && product" class="product-detail-content">
+			<!-- Main Detail Grid -->
+			<div class="detail-grid mb-5">
+				<div class="product-image-container">
+					<img [src]="product.imageUrl" class="img-fluid" [alt]="product.name" />
+					<span class="category-badge">{{ product.category }}</span>
 				</div>
+				<div class="product-info">
+					<div class="rating-section">
+						<span class="product-rating">⭐ {{ product.rating }}/5</span>
+						<span class="stock-badge" [class.low]="product.stock < 5">
+							{{ product.stock }} en stock
+						</span>
+					</div>
+					<h1>{{ product.name }}</h1>
+					<p class="product-description">{{ product.description }}</p>
+					<div class="product-price">{{ product.price | currency:'EUR' }}</div>
+					<div class="action-buttons">
+						<button (click)="addToCart(product)" class="btn btn-success btn-lg">
+							🛒 Ajouter au panier
+						</button>
+						<a routerLink="/" class="btn btn-outline-secondary">← Retour à la boutique</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Specifications Section -->
+			<div *ngIf="product.specs && product.specs.length > 0" class="specs-section">
+				<h2>📋 Spécifications Techniques</h2>
+				<div class="specs-grid">
+					<div *ngFor="let spec of product.specs" class="spec-item">
+						<span class="spec-label">{{ spec.label }}</span>
+						<span class="spec-value">{{ spec.value }}</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Features Section -->
+			<div *ngIf="product.features && product.features.length > 0" class="features-section">
+				<h2>✨ Caractéristiques Principales</h2>
+				<ul class="features-list">
+					<li *ngFor="let feature of product.features">
+						<span class="feature-icon">✓</span>
+						{{ feature }}
+					</li>
+				</ul>
+			</div>
+
+			<!-- Call to Action -->
+			<div class="cta-section">
+				<h2>Prêt à commander ?</h2>
+				<p>Cet article est en stock et peut être livré rapidement</p>
+				<button (click)="addToCart(product)" class="btn btn-primary btn-lg">
+					✅ Confirmer l'achat
+				</button>
 			</div>
 		</div>
 

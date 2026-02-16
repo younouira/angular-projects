@@ -1,6 +1,9 @@
-<section class="mt-4">
+<section class="products-section">
 	<div class="container">
-		<h2 class="mb-5">Nos PCs en stock</h2>
+		<div class="section-header">
+			<h2>🖥️ Nos PCs en stock</h2>
+			<p class="section-subtitle">Découvrez notre large sélection de configurations</p>
+		</div>
 
 		<div *ngIf="isLoading" class="d-flex justify-content-center my-5">
 			<div class="spinner-border text-primary" role="status">
@@ -12,16 +15,74 @@
 			{{ errorMessage }}
 		</div>
 
-		<div class="product-grid" *ngIf="!isLoading && !errorMessage">
-			<div *ngFor="let product of products; trackBy: trackById">
-				<div class="card h-100">
-					<img [src]="product.imageUrl" class="card-img-top product-image" [alt]="product.name" />
-					<div class="card-body d-flex flex-column">
-						<h5 class="card-title">{{ product.name }}</h5>
-						<p class="card-text flex-grow-1">{{ product.description }}</p>
-						<p class="card-price">{{ product.price | currency:'EUR' }}</p>
-						<a [routerLink]="['/product', product.id]" class="btn btn-primary">Voir détail</a>
+		<div *ngIf="!isLoading && !errorMessage" class="products-with-filters">
+			<!-- Filters Sidebar -->
+			<aside class="filters-sidebar">
+				<div class="filter-section">
+					<h3 class="filter-title">Filtrer par</h3>
+				</div>
+
+				<!-- Category Filter -->
+				<div class="filter-section">
+					<h4 class="filter-heading">Catégorie</h4>
+					<div class="filter-options">
+						<button (click)="filterByCategory('Tous')" [class.active]="selectedCategory === 'Tous'"
+							class="filter-btn">
+							Tous les produits
+						</button>
+						<button *ngFor="let category of categories" (click)="filterByCategory(category)"
+							[class.active]="selectedCategory === category" class="filter-btn">
+							{{ category }}
+						</button>
 					</div>
+				</div>
+
+				<!-- Price Filter -->
+				<div class="filter-section">
+					<h4 class="filter-heading">Prix Maximum</h4>
+					<div class="price-filter">
+						<input type="range" min="500" max="5000" step="100" [value]="priceFilter"
+							(change)="onPriceChange($event)" class="price-slider" />
+						<div class="price-display">
+							<span class="price-value">{{ priceFilter | currency:'EUR' }}</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Stats -->
+				<div class="filter-section stats-box">
+					<p>📊 <strong>{{ products.length }}</strong> produit(s) trouvé(s)</p>
+				</div>
+			</aside>
+
+			<!-- Products Grid -->
+			<div class="products-container">
+				<div class="product-grid">
+					<div *ngFor="let product of products; trackBy: trackById">
+						<div class="card h-100">
+							<div class="card-badge">
+								<span class="badge-category">{{ product.category }}</span>
+								<span class="badge-rating">⭐ {{ product.rating }}</span>
+							</div>
+							<img [src]="product.imageUrl" class="card-img-top product-image" [alt]="product.name" />
+							<div class="card-body d-flex flex-column">
+								<h5 class="card-title">{{ product.name }}</h5>
+								<p class="card-text flex-grow-1">{{ product.description }}</p>
+								<div class="card-footer-info">
+									<span class="stock-info" [class.low-stock]="product.stock < 5">
+										{{ product.stock }} en stock
+									</span>
+									<p class="card-price">{{ product.price | currency:'EUR' }}</p>
+								</div>
+								<a [routerLink]="['/product', product.id]" class="btn btn-primary">Voir détail</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Empty State -->
+				<div *ngIf="products.length === 0" class="empty-state">
+					<p>Aucun produit ne correspond à vos critères de filtrage.</p>
 				</div>
 			</div>
 		</div>

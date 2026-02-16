@@ -1,0 +1,101 @@
+<section class="dashboard-section">
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>📊 Tableau de Bord</h1>
+            <p class="subtitle">Aperçu complète de votre magasin PC</p>
+        </div>
+
+        <div *ngIf="isLoading" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+            </div>
+        </div>
+
+        <div *ngIf="!isLoading && stats" class="stats-grid">
+            <!-- Total Products Card -->
+            <div class="stat-card card-products">
+                <div class="stat-icon">🖥️</div>
+                <div class="stat-content">
+                    <h3>Produits</h3>
+                    <p class="stat-value">{{ stats.totalProducts }}</p>
+                    <p class="stat-label">Articles en stock</p>
+                </div>
+            </div>
+
+            <!-- Total Stock Value Card -->
+            <div class="stat-card card-value">
+                <div class="stat-icon">💰</div>
+                <div class="stat-content">
+                    <h3>Valeur Total</h3>
+                    <p class="stat-value">{{ formatPrice(stats.totalValue) }}</p>
+                    <p class="stat-label">Inventaire valorisé</p>
+                </div>
+            </div>
+
+            <!-- Average Rating Card -->
+            <div class="stat-card card-rating">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-content">
+                    <h3>Évaluation Moy.</h3>
+                    <p class="stat-value">{{ stats.avgRating }}/5</p>
+                    <p class="stat-label">Satisfaction clients</p>
+                </div>
+            </div>
+
+            <!-- Total Stock Card -->
+            <div class="stat-card card-stock">
+                <div class="stat-icon">📦</div>
+                <div class="stat-content">
+                    <h3>Stock Total</h3>
+                    <p class="stat-value">{{ stats.totalStock }}</p>
+                    <p class="stat-label">Unités disponibles</p>
+                </div>
+            </div>
+
+            <!-- Categories Card -->
+            <div class="stat-card card-categories">
+                <div class="stat-icon">🏷️</div>
+                <div class="stat-content">
+                    <h3>Catégories</h3>
+                    <p class="stat-value">{{ stats.categories }}</p>
+                    <p class="stat-label">Types de produits</p>
+                </div>
+            </div>
+
+            <!-- Articles Card -->
+            <div class="stat-card card-articles">
+                <div class="stat-icon">📰</div>
+                <div class="stat-content">
+                    <h3>Articles</h3>
+                    <p class="stat-value">{{ stats.articles }}</p>
+                    <p class="stat-label">Blog & Guides</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats Section -->
+        <div class="quick-stats mt-5">
+            <h2>📈 Statistiques Rapides</h2>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h4>🎮 Catégories Populaires</h4>
+                        <ul>
+                            <li>Gaming - Configuration haute performance</li>
+                            <li>Portable - Ultrabooks et laptops professionnel</li>
+                            <li>Bureau - PCs fixes bureautiques</li>
+                            <li>Spécialisé - Solutions custom</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <h4>💡 À Propos</h4>
+                        <p>PC Store est votre destination pour trouver le PC parfait. Avec une large sélection de
+                            produits et des guides détaillés, nous vous aidons à faire le meilleur choix.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
