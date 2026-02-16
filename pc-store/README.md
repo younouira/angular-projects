@@ -34,7 +34,33 @@ To build the project run:
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+This will compile your project and store the build artifacts in the `../docs/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Deployment to GitHub Pages
+
+This project is configured to be deployed to GitHub Pages at [youssefnouira.me](https://youssefnouira.me).
+
+To deploy:
+
+1. Build the project from the repository root:
+   ```bash
+   ./build-for-gh-pages.sh
+   ```
+
+2. Commit and push the changes:
+   ```bash
+   git add docs/
+   git commit -m "Deploy to GitHub Pages"
+   git push
+   ```
+
+3. Make sure GitHub Pages is configured to serve from the `docs` folder in repository settings.
+
+The build script automatically:
+- Builds the Angular application for production
+- Moves files to the `docs/` folder
+- Copies the `CNAME` file for custom domain
+- Creates a `.nojekyll` file to disable Jekyll processing
 
 ## Running unit tests
 
