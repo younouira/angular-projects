@@ -1,0 +1,118 @@
+═══════════════════════════════════════════════════════════════════════
+                    DEPLOYMENT - MANUAL STEPS REQUIRED
+═══════════════════════════════════════════════════════════════════════
+
+IMPORTANT: I have completed all automated setup, but due to security 
+limitations, I CANNOT perform the following actions. YOU must do them:
+
+───────────────────────────────────────────────────────────────────────
+WHAT I'VE DONE (✅ Complete):
+───────────────────────────────────────────────────────────────────────
+
+✅ Configured Angular build for GitHub Pages (baseHref: "/pc-store/")
+✅ Created GitHub Actions workflow for automated deployment
+✅ Added 404.html and redirect handler for client-side routing
+✅ Set up CNAME file for custom domain (youssefnouira.me)
+✅ Ran security scans (CodeQL - no issues found)
+✅ Created comprehensive documentation:
+   • DEPLOYMENT_INSTRUCTIONS.md (detailed guide)
+   • QUICK_DEPLOY_CHECKLIST.md (quick reference)
+   • PC_STORE_DEPLOYMENT.md (technical details)
+   • SECURITY_SUMMARY.md (security info)
+
+───────────────────────────────────────────────────────────────────────
+WHAT YOU MUST DO (⚠️ Required):
+───────────────────────────────────────────────────────────────────────
+
+┌─ STEP 1: MERGE PR ──────────────────────────────────────────────────┐
+│                                                                       │
+│  Why I can't: No permission to push to master branch                │
+│                                                                       │
+│  What you do:                                                        │
+│  1. Go to: https://github.com/younouira/angular-projects/pulls      │
+│  2. Find PR for branch: copilot/host-pc-store-project               │
+│  3. Click "Merge pull request"                                       │
+│  4. Confirm the merge                                                │
+│                                                                       │
+│  OR via command line:                                                │
+│  $ git checkout master                                               │
+│  $ git merge copilot/host-pc-store-project                          │
+│  $ git push origin master                                            │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌─ STEP 2: ENABLE GITHUB PAGES ──────────────────────────────────────┐
+│                                                                       │
+│  Why I can't: No access to GitHub web interface/settings            │
+│                                                                       │
+│  What you do:                                                        │
+│  1. Go to: https://github.com/younouira/angular-projects/settings/  │
+│            pages                                                     │
+│  2. Under "Source": Select "GitHub Actions"                         │
+│  3. Under "Custom domain": Enter "youssefnouira.me"                 │
+│  4. Click "Save"                                                     │
+│  5. Check "Enforce HTTPS"                                            │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌─ STEP 3: CONFIGURE DNS ─────────────────────────────────────────────┐
+│                                                                       │
+│  Why I can't: No access to your DNS provider                        │
+│                                                                       │
+│  What you do:                                                        │
+│  1. Log in to your DNS provider (where you bought youssefnouira.me) │
+│  2. Go to DNS settings for youssefnouira.me                         │
+│  3. Add these A records:                                             │
+│                                                                       │
+│     Type: A,  Name: @,  Value: 185.199.108.153                      │
+│     Type: A,  Name: @,  Value: 185.199.109.153                      │
+│     Type: A,  Name: @,  Value: 185.199.110.153                      │
+│     Type: A,  Name: @,  Value: 185.199.111.153                      │
+│                                                                       │
+│  4. Save changes                                                     │
+│  5. Wait for DNS propagation (15 min - 48 hours, usually 1-2 hours) │
+│                                                                       │
+│  Verify with: dig youssefnouira.me +short                           │
+│                                                                       │
+└───────────────────────────────────────────────────────────────────────┘
+
+───────────────────────────────────────────────────────────────────────
+TIMELINE:
+───────────────────────────────────────────────────────────────────────
+
+• Your manual steps: 15-20 minutes
+• GitHub Actions build: 3-5 minutes after merge
+• DNS propagation: 15 minutes to 48 hours (usually 1-2 hours)
+• SSL certificate: Up to 24 hours after DNS configured
+
+───────────────────────────────────────────────────────────────────────
+VERIFICATION:
+───────────────────────────────────────────────────────────────────────
+
+After completing all steps, verify:
+
+✓ Workflow succeeded: github.com/younouira/angular-projects/actions
+✓ Home page works: https://youssefnouira.me/pc-store/
+✓ Product pages work: https://youssefnouira.me/pc-store/product/1
+✓ Direct URLs work (paste URL in new tab)
+✓ HTTPS enabled (padlock icon)
+
+───────────────────────────────────────────────────────────────────────
+DOCUMENTATION:
+───────────────────────────────────────────────────────────────────────
+
+For detailed instructions, see:
+• DEPLOYMENT_INSTRUCTIONS.md - Complete step-by-step guide
+• QUICK_DEPLOY_CHECKLIST.md - Quick reference
+
+───────────────────────────────────────────────────────────────────────
+RESULT:
+───────────────────────────────────────────────────────────────────────
+
+After completing these 3 steps, your PC Store will be live at:
+
+    🌐 https://youssefnouira.me/pc-store/
+
+With automatic deployments every time you push to master! 🚀
+
+═══════════════════════════════════════════════════════════════════════

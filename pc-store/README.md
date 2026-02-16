@@ -2,6 +2,10 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
 
+## Live Demo
+
+The application is deployed at: [https://youssefnouira.me/pc-store/](https://youssefnouira.me/pc-store/)
+
 ## Development server
 
 To start a local development server, run:
@@ -35,6 +39,20 @@ ng build
 ```
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Deployment
+
+The project is configured to deploy automatically to GitHub Pages on the domain `youssefnouira.me` when changes are pushed to the `main` branch.
+
+### Manual Deployment
+
+To build for production:
+
+```bash
+npm run build -- --configuration production
+```
+
+The build artifacts will be stored in the `dist/pc-store/browser/` directory, ready for deployment.
 
 ## Running unit tests
 
