@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype de Parking Intelligent (Smart Parking)</title>
+    <style>
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #0066cc;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #0066cc;
+            margin-top: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        table th {
+            background-color: #0066cc;
+            color: white;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        strong {
+            color: #0066cc;
+        }
+        .header-info {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section {
+            margin: 30px 0;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 30px 0;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-info">
+    <h1>Prototype de Parking Intelligent (Smart Parking)</h1>
+    <p><strong>Mémoire de Master – Électronique des systèmes embarqués</strong><br>
+    Université Badji Mokhtar – Annaba (2020/2021)</p>
+</div>
+
+<hr>
+
+<div class="section">
+    <h2>📋 Résumé du Projet</h2>
+    <p>Ce projet propose un <strong>système de parking intelligent</strong> utilisant l'Internet des Objets (IoT) pour optimiser la gestion des places de stationnement en milieu urbain. Le prototype permet la détection en temps réel des places disponibles, la réservation via application mobile, et l'amélioration de la mobilité urbaine.</p>
+</div>
+
+<hr>
+
+<div class="section">
+    <h2>🎯 Objectifs</h2>
+    <ul>
+        <li><strong>Détection automatique</strong> de la disponibilité des places en temps réel</li>
+        <li><strong>Réservation mobile</strong> via l'application Blynk</li>
+        <li><strong>Réduction</strong> du temps de recherche de stationnement</li>
+        <li><strong>Diminution</strong> de la congestion et de la pollution urbaine</li>
+        <li><strong>Sécurité renforcée</strong> avec détection d'intrusion et alertes SMS</li>
+    </ul>
+</div>
+
+<hr>
+
+<div class="section">
+    <h2>🔧 Architecture Technique</h2>
+    
+    <h3>Composants Matériels</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Composant</th>
+                <th>Fonction</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Arduino UNO</strong></td>
+                <td>Microcontrôleur principal</td>
+            </tr>
+            <tr>
+                <td><strong>Capteurs IR</strong></td>
+                <td>Détection de présence véhicule</td>
+            </tr>
+            <tr>
+                <td><strong>Capteur PIR</strong></td>
+                <td>Détection de mouvement/intrusion</td>
+            </tr>
+            <tr>
+                <td><strong>Servomoteur</strong></td>
+                <td>Contrôle des barrières</td>
+            </tr>
+            <tr>
+                <td><strong>Module GSM SIM900</strong></td>
+                <td>Envoi de SMS d'alerte</td>
+            </tr>
+            <tr>
+                <td><strong>Module RTC DS1307</strong></td>
+                <td>Gestion temporelle</td>
+            </tr>
+            <tr>
+                <td><strong>LCD 16x2</strong></td>
+                <td>Affichage des informations</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h3>Logiciels et Outils</h3>
+    <ul>
+        <li><strong>Arduino IDE</strong> : Programmation du microcontrôleur</li>
+        <li><strong>PROTEUS</strong> : Simulation électronique</li>
+        <li><strong>Application Blynk</strong> : Interface mobile de contrôle et réservation</li>
+        <li><strong>Commandes AT</strong> : Communication avec le module GSM</li>
+    </ul>
+</div>
+
+<hr>
+
+<div class="section">
+    <h2>⚙️ Fonctionnement du Système</h2>
+    
+    <h3>Processus Principal</h3>
+    <ol>
+        <li><strong>Détection</strong> : Les capteurs IR identifient les places occupées/libres</li>
+        <li><strong>Affichage</strong> : Le LCD affiche le nombre de places disponibles</li>
+        <li><strong>Réservation</strong> : L'utilisateur réserve via l'application mobile</li>
+        <li><strong>Accès</strong> : Le servomoteur ouvre la barrière pour les véhicules autorisés</li>
+        <li><strong>Sécurité</strong> : Le capteur PIR détecte les intrusions et déclenche une alerte SMS</li>
+    </ol>
+    
+    <h3>Scénarios d'Utilisation</h3>
+    <ul>
+        <li><strong>Entrée de véhicule</strong> : Détection → Vérification → Ouverture barrière → Mise à jour compteur</li>
+        <li><strong>Sortie de véhicule</strong> : Détection → Ouverture barrière → Libération de place</li>
+        <li><strong>Réservation</strong> : Consultation app → Sélection place → Confirmation → Notification</li>
+        <li><strong>Intrusion</strong> : Détection PIR → Alerte SMS → Notification sécurité</li>
+    </ul>
+</div>
+
+<hr>
+
+<div class="section">
+    <h2>💡 Avantages et Impact</h2>
+    
+    <h3>Bénéfices Utilisateurs</h3>
+    <ul>
+        <li>⏱️ <strong>Gain de temps</strong> : Localisation rapide des places disponibles</li>
+        <li>📱 <strong>Confort</strong> : Réservation anticipée via smartphone</li>
+        <li>💰 <strong>Économie</strong> : Réduction de la consommation de carburant</li>
+    </ul>
+    
+    <h3>Bénéfices Urbains</h3>
+    <ul>
+        <li>🌍 <strong>Environnement</strong> : Diminution des émissions de CO₂</li>
+        <li>🚗 <strong>Fluidité</strong> : Réduction de la congestion urbaine</li>
+        <li>🏙️ <strong>Gestion</strong> : Optimisation des infrastructures de stationnement</li>
+    </ul>
+</div>
+
+<hr>
+
+<div class="section">
+    <h2>🧪 Validation et Résultats</h2>
+    <p>Le prototype a été simulé avec succès sous <strong>PROTEUS</strong>, validant :</p>
+    <ul>
+        <li>✅ La détection précise des véhicules</li>
+        <li>✅ Le contrôle automatique des barrières</li>
+        <li>✅ La communication GSM et l'envoi de SMS</li>
+        <li>✅ L'interface mobile fonctionnelle</li>
+        <li>✅ La gestion en temps réel des places</li>
+    </ul>
+</div>
+
+<hr>
+
+<div class="section">
+    <h2>🔮 Perspectives et Évolutions</h2>
+    
+    <h3>Améliorations Futures</h3>
+    <ol>
+        <li><strong>Intelligence Artificielle</strong> : Prédiction des périodes de forte affluence</li>
+        <li><strong>Cloud Computing</strong> : Centralisation des données multi-parkings</li>
+        <li><strong>Paiement intégré</strong> : Transaction automatique via l'application</li>
+        <li><strong>Énergies renouvelables</strong> : Alimentation solaire du système</li>
+        <li><strong>Intégration ville intelligente</strong> : Connexion aux systèmes urbains de transport</li>
+    </ol>
+    
+    <h3>Extensibilité</h3>
+    <ul>
+        <li>Scalabilité pour parkings multi-niveaux</li>
+        <li>Interface web pour la gestion administrative</li>
+        <li>Analyse de données pour l'optimisation</li>
+        <li>Intégration avec GPS et systèmes de navigation</li>
+    </ul>
+</div>
+
+<hr>
+
+<div class="section">
+    <h2>📊 Synthèse Technique</h2>
+    <p><strong>Technologies clés</strong> : IoT, Arduino, GSM, Application mobile<br>
+    <strong>Type de projet</strong> : Système embarqué temps réel<br>
+    <strong>Domaine</strong> : Mobilité intelligente et ville connectée<br>
+    <strong>Coût</strong> : Solution économique et accessible<br>
+    <strong>Fiabilité</strong> : Validé par simulation</p>
+</div>
+
+<hr>
+
+<div class="section">
+    <h2>📝 Conclusion</h2>
+    <p>Ce prototype de <strong>parking intelligent</strong> démontre la viabilité d'une solution IoT pour améliorer la mobilité urbaine. En combinant capteurs, communication mobile et automatisation, le système offre une réponse efficace aux défis du stationnement en milieu urbain.</p>
+    
+    <p>Le projet s'inscrit dans la vision des <strong>villes intelligentes</strong> et contribue à la réduction de la pollution, à l'amélioration de la qualité de vie, et à l'optimisation des ressources urbaines.</p>
+</div>
+
+<hr>
+
+<div class="section">
+    <h2>🏷️ Mots-clés</h2>
+    <p><span class="highlight">Smart Parking</span> • <span class="highlight">IoT</span> • <span class="highlight">Arduino UNO</span> • <span class="highlight">GSM</span> • <span class="highlight">Application mobile</span> • <span class="highlight">Ville intelligente</span> • <span class="highlight">Capteurs</span> • <span class="highlight">Mobilité urbaine</span> • <span class="highlight">Système embarqué</span></p>
+</div>
+
+<div class="footer">
+    <p><strong>Document créé le</strong> : 21 décembre 2025<br>
+    <strong>Basé sur</strong> : Mémoire de Master – État de l'art "Smart Parking"<br>
+    <strong>Version</strong> : Améliorée et condensée</p>
+</div>
+
+</body>
+</html>
